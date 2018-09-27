@@ -1,0 +1,25 @@
+<data>
+        <resource-handler id="rh-1">
+                <context-path>/test/1</context-path>
+                <location>/home/vadym/flink</location>
+                <allow-modification>true</allow-modification>
+                <modify-roles>admin</modify-roles>
+        </resource-handler>
+        <resource-handler id="rh-2">
+                <context-path>/test/2</context-path>
+                <location>/home/vadym/separte</location>
+                <allow-modification>true</allow-modification>
+                <modify-roles>admin</modify-roles>
+        </resource-handler>
+        <resource-handler id="rh-3">
+                <context-path>/test/3</context-path>
+                <location>/home/vadym/tools</location>
+        </resource-handler>
+        <resource-handler id="rh-3">
+                <context-path>/flink</context-path>
+                <location>/home/vadym/tools/mytools/flink-esb-2.0.0</location>
+                <allow-modification>true</allow-modification>
+                <modify-roles>admin</modify-roles>
+        </resource-handler>
+</data>
+
