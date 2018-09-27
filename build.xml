@@ -1,0 +1,28 @@
+<project name="Flink-ESB 2.0.0 Installation" basedir="." default="main">
+        <property file="install.properties" />
+        <target name="main" depends="extract_distribution,copy_templates">
+                <echo message="Finished installing karaf" />
+        </target>
+
+        <target name="extract_distribution" description="extract Flink-ESB distribution and copy to ${dist.dir}">
+                <mkdir dir="${dist.dir}"/>
+                <unzip src="flink-esb-2.0.0.win.distribution.zip" dest="${dist.dir}"/>
+        </target>
+
+        <target name="copy_templates" description="Copy template files, replace property placeholders with corresponding properties">
+                <echo message="Copying templates into dist.dir, replacing property tokens with corresponding properties" />
+                <copy toDir="${dist.dir}/flink-esb-2.0.0" preservelastmodified="true" verbose="true">
+                        <fileset dir="${dist.dir}/flink-esb-2.0.0/templates">
+                                <include name="**/*" />
+                        </fileset>
+                        <filterset begintoken="${" endtoken="}">
+                                <filtersfile file="install.properties"/>
+                        </filterset>
+                </copy>
+        </target>
+		
+		<target name="clean">
+			<delete dir="${dist.dir}"/>
+		</target>
+
+</project>
