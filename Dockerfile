@@ -9,8 +9,8 @@ COPY install.properties /opt/distribution
 
 COPY ./.s2i/bin/ /usr/local/s2i
 
-# Drop the root user and make the content of /opt/app-root owned by user 1001
-RUN chown -R 1001:1001 /opt/app-root
+# Drop the root user and make the content of /opt/flink owned by user 1001
+RUN chown -R 1001:1001 /opt/flink
 
 # Set the default user for the image, the user itself was created in the base image
 USER 1001
