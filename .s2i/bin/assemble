@@ -1,0 +1,10 @@
+#!/bin/bash -e
+#
+# S2I assemble script for the 'flinkesb-openshift' image.
+# The 'assemble' script builds your application source ready to run.
+#
+#
+
+echo "---> Installing application source"
+cd /opt/distribution
+/opt/tools/apache-ant-1.9.7/bin/ant

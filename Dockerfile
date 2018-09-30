@@ -9,8 +9,12 @@ COPY install.properties /opt/distribution
 
 COPY ./.s2i/bin/ /usr/local/s2i
 
+LABEL io.openshift.s2i.scripts-url=image:///usr/local/s2i
+
 # Drop the root user and make the content of /opt/flink owned by user 1001
 RUN chown -R 1001:1001 /opt/flink
+RUN chown -R 1001:1001 /opt/distribution
+RUN chown -R 1001:1001 /opt/tools
 
 # Set the default user for the image, the user itself was created in the base image
 USER 1001

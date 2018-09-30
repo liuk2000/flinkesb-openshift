@@ -1,0 +1,8 @@
+#!/bin/bash -e
+#
+# S2I run script for the 'flinkesb-openshift' image.
+# The run script executes the server that runs your application.
+#
+#
+
+/opt/flink/flink-esb-2.0.0/bin/start
