@@ -1,0 +1,11 @@
+# build docker image from the local git repo
+docker build -t flinkesb-openshift .
+
+# run docker image with mapped ports and stdin/stdout
+docker run -it -p 4848:4848 -p 8443:8443 flinkesb-openshift
+
+# run docker image with mapped ports (no mapped stdin/stdout)
+docker run -d -p 4848:4848 -p 8443:8443 flinkesb-openshift
+
+# run docker image and connect to image shell
+docker run -it -p 4848:4848 -p 8443:8443 flinkesb-openshift /bin/bash

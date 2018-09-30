@@ -26,4 +26,4 @@ RUN cd /opt/distribution && /opt/tools/apache-ant-1.9.13/bin/ant
 EXPOSE 8443
 EXPOSE 4848
 
-CMD [ "/opt/flink/flink-esb-2.0.0/bin/start" ]
+CMD [ "/opt/flink/flink-esb-2.0.0/bin/karaf" ]
