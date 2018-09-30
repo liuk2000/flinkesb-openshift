@@ -38,6 +38,7 @@
 		<chmod file="${dist.dir}/flink-esb-2.0.0/bin/karaf" perm="777" verbose="true"/>
 		<chmod file="${dist.dir}/flink-esb-2.0.0/bin/instance" perm="777" verbose="true"/>
 		<chmod file="${dist.dir}/flink-esb-2.0.0/bin/client" perm="777" verbose="true"/>
+		<chmod file="${dist.dir}/flink-esb-2.0.0/data" perm="777" verbose="true"/>
 		<copy file="flink-esb.lic" toDir="${dist.dir}/flink-esb-2.0.0" preservelastmodified="true" verbose="true"/>
 	</target>
 		
