@@ -3,9 +3,9 @@ FROM openjdk:8
 MAINTAINER Vadym Korol <vadym.korol@verbundo.com>
 
 ADD apache-ant-1.9.13-bin.tar.gz /opt/tools/
-COPY flink-esb-2.0.0.linux.distribution.tar.gz /opt/distribution
-COPY build.xml /opt/distribution
-COPY install.properties /opt/distribution
+COPY flink-esb-2.0.0.linux.distribution.tar.gz /opt/distribution/
+COPY build.xml /opt/distribution/
+COPY install.properties /opt/distribution/
 RUN mkdir -p /opt/flink
 
 #COPY ./.s2i/bin/ /usr/local/s2i
