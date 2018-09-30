@@ -30,14 +30,14 @@
 
 	<target name="prepare_start" description="Prepare FLINK-ESB for launching">
 		<!--property name="dist.dir" value="${env.FLINK_ESB_HOME}"/-->
-		<chmod file="${dist.dir}/flink-esb-2.0.0/bin/start" perm="700" verbose="true"/>
-		<chmod file="${dist.dir}/flink-esb-2.0.0/bin/stop" perm="700" verbose="true"/>
-		<chmod file="${dist.dir}/flink-esb-2.0.0/bin/status" perm="700" verbose="true"/>
-		<chmod file="${dist.dir}/flink-esb-2.0.0/bin/shell" perm="700" verbose="true"/>
-		<chmod file="${dist.dir}/flink-esb-2.0.0/bin/setenv" perm="700" verbose="true"/>
-		<chmod file="${dist.dir}/flink-esb-2.0.0/bin/karaf" perm="700" verbose="true"/>
-		<chmod file="${dist.dir}/flink-esb-2.0.0/bin/instance" perm="700" verbose="true"/>
-		<chmod file="${dist.dir}/flink-esb-2.0.0/bin/client" perm="700" verbose="true"/>
+		<chmod file="${dist.dir}/flink-esb-2.0.0/bin/start" perm="777" verbose="true"/>
+		<chmod file="${dist.dir}/flink-esb-2.0.0/bin/stop" perm="777" verbose="true"/>
+		<chmod file="${dist.dir}/flink-esb-2.0.0/bin/status" perm="777" verbose="true"/>
+		<chmod file="${dist.dir}/flink-esb-2.0.0/bin/shell" perm="777" verbose="true"/>
+		<chmod file="${dist.dir}/flink-esb-2.0.0/bin/setenv" perm="777" verbose="true"/>
+		<chmod file="${dist.dir}/flink-esb-2.0.0/bin/karaf" perm="777" verbose="true"/>
+		<chmod file="${dist.dir}/flink-esb-2.0.0/bin/instance" perm="777" verbose="true"/>
+		<chmod file="${dist.dir}/flink-esb-2.0.0/bin/client" perm="777" verbose="true"/>
 		<copy file="flink-esb.lic" toDir="${dist.dir}/flink-esb-2.0.0" preservelastmodified="true" verbose="true"/>
 	</target>
 		
