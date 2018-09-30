@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.4.0" name="flink-esb-2.0.0">
+    <!--repository>mvn:org.ops4j.pax.web/pax-web-features/4.3.0/xml/features</repository-->
+    <feature name="flink-esb-core" description="Main functioanlity of Flink-ESB" version="2.0.0">
+		<feature prerequisite="false" dependency="false">management</feature>
+		<feature prerequisite="false" dependency="false">transaction</feature>
+        <feature prerequisite="false" dependency="false">aries-blueprint</feature>
+		<feature prerequisite="false" dependency="false">war</feature>
+		<bundle start-level="30" start="true">mvn:javax.mail/mail/1.4.4</bundle>
+        <bundle start-level="30" start="false">file:lib/flink/commons-io-2.4.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/commons-pool-1.6.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/geronimo-jms_1.1_spec-1.1.1.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/commons-codec-1.9.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/bcprov-jdk15on-1.56.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/org.apache.servicemix.bundles.xstream-1.4.4_2.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/liuk.xstream_1.4.4.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/commons-lang-2.6.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/commons-net-3.3.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/org.apache.servicemix.bundles.jsch-0.1.51_1.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/liuk.json_20131018.0.0.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/quartz-2.2.2_modified.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/mvel2-2.3.1.Final_modified.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/geronimo-servlet_3.0_spec-1.0.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/org.apache.httpcomponents.httpcore_4.4.4.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/org.apache.httpcomponents.httpclient_4.5.1.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/org.aspectj.runtime_1.8.6.20150608154244.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/gson-2.8.1.jar</bundle>
+		<bundle start-level="30" start="true">file:lib/flink/net.liuk.esb.core_2.0.0.201809272149.jar</bundle>
+		<bundle start-level="5" start="true">file:lib/flink/net.liuk.esb.audit_0.1.0.jar</bundle>
+    </feature>
+	<feature name="flink-esb-distributed" description="Flink-ESB cluster functionality" version="2.0.0">
+		<feature prerequisite="false" dependency="false" version="2.0.0">flink-esb-core</feature>
+		<bundle start-level="30" start="false">file:lib/flink/hazelcast-3.10.4.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/liuk.json_20131018.0.0.jar</bundle>
+		<bundle start-level="30">file:lib/flink/net.liuk.esb.distributed_2.0.0.201809252313.jar</bundle>
+    </feature>
+	<feature name="flink-esb-karaf-commands" version="2.0.0">
+		<feature prerequisite="false" dependency="false">flink-esb-core</feature>
+		<feature prerequisite="false" dependency="false">flink-esb-distributed</feature>
+		<bundle start-level="30">file:lib/flink/net.liuk.esb.karaf.commands_0.1.0.jar</bundle>
+	</feature>
+	<feature name="flink-esb-console" version="2.0.0">
+		<feature prerequisite="false" dependency="false">flink-esb-core</feature>
+		<feature prerequisite="false" dependency="false">flink-esb-distributed</feature>
+		<bundle start-level="30" start="false">file:lib/flink/liuk.json_20131018.0.0.jar</bundle>
+		<bundle start-level="30">file:lib/flink/org.apache.felix.prefs-1.0.6.jar</bundle>
+		<bundle start-level="30">file:lib/flink/net.liuk.esb.console_2.0.0.201809252313.jar</bundle>
+	</feature>
+	<feature name="flink-esb-es" version="2.0.0">
+		<feature prerequisite="false" dependency="false">flink-esb-core</feature>
+		<bundle start-level="30" start="false">file:lib/flink/compress-lzf-1.0.3.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/guava-18.0.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/jackson-annotations-2.6.7.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/jackson-core-2.6.7.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/jackson-databind-2.6.7.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/jackson-dataformat-cbor-2.6.7.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/jackson-dataformat-smile-2.6.7.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/jackson-dataformat-yaml-2.6.7.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/jna-4.1.0.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/netty-3.10.6.Final.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/snakeyaml-1.17.jar</bundle>
+		<bundle start-level="30" start="false">file:lib/flink/org.apache.servicemix.bundles.elasticsearch-2.2.1_1_modified.jar</bundle>
+		<bundle start-level="45">file:lib/flink/net.liuk.esb.es_0.1.0.jar</bundle>
+	</feature>
+</features>

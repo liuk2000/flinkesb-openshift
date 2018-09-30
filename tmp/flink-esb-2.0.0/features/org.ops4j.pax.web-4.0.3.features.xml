@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="org.ops4j.pax.web-4.3.0" xmlns="http://karaf.apache.org/xmlns/features/v1.3.0">
+
+    <feature name="pax-jetty" description="Provide Jetty engine support" version="9.2.19.v20160908">
+        <bundle dependency="true" start-level="30">file:lib/tplib/org.apache.servicemix.specs.activation-api-1.1-2.5.0.jar</bundle>
+        <bundle dependency="true" start-level="30">file:lib/tplib/javax.servlet-api-3.1.0.jar</bundle>
+        <bundle dependency="true" start-level="30">file:lib/tplib/mail-1.4.4.jar</bundle>
+        <bundle dependency="true" start-level="30">file:lib/tplib/geronimo-jta_1.1_spec-1.1.1.jar</bundle>
+		<bundle dependency="true" start-level="30">file:lib/tplib/javax.annotation-api-1.2.jar</bundle>
+        <bundle dependency="true" start-level="30">file:lib/tplib/geronimo-jaspic_1.0_spec-1.1.jar</bundle>
+        <bundle dependency="true" start-level="30">file:lib/tplib/asm-all-5.0.2.jar</bundle>
+        <bundle dependency="true" start-level="30">file:lib/tplib/org.apache.aries.spifly.dynamic.bundle-1.0.1.jar</bundle>
+        <bundle dependency="true" start-level="30">file:lib/tplib/org.apache.aries.util-1.1.0.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/jetty-continuation-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/jetty-http-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/jetty-io-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/jetty-jaspi-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/jetty-jmx-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/jetty-jndi-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/jetty-plus-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/jetty-rewrite-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/jetty-security-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/jetty-server-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/jetty-servlet-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/jetty-servlets-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/jetty-util-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/jetty-util-ajax-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/jetty-webapp-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/jetty-jaas-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/jetty-xml-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/jetty-client-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/websocket-server-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/websocket-client-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/websocket-common-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/websocket-servlet-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/websocket-api-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/javax-websocket-server-impl-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/javax-websocket-client-impl-9.2.19.v20160908.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/javax.websocket-api-1.1.jar</bundle>
+
+        <capability>
+            pax.http.provider;provider:=jetty
+        </capability>
+    </feature>
+
+    <feature name="pax-http-jetty" version="4.3.0">
+        <configfile finalname="/etc/jetty.xml">file:lib/tplib/pax-web-features-4.3.0-jettyconfig.xml</configfile>
+        <config name="org.ops4j.pax.web">
+            org.osgi.service.http.port=8181
+            javax.servlet.context.tempdir=${karaf.data}/pax-web-jsp
+            org.ops4j.pax.web.config.file=${karaf.base}/etc/jetty.xml
+        </config>
+        <feature version="[7.0,10.0)">pax-jetty</feature>
+
+        <bundle dependency="true" start-level="20">file:lib/tplib/asm-all-5.0.2.jar</bundle>
+        <bundle dependency="true" start-level="20">file:lib/tplib/xbean-bundleutils-4.1.jar</bundle>
+        <bundle dependency="true" start-level="20">file:lib/tplib/xbean-reflect-4.1.jar</bundle>
+        <bundle dependency="true" start-level="20">file:lib/tplib/xbean-finder-4.1.jar</bundle>
+
+        <bundle start-level="30">file:lib/tplib/pax-web-api-4.3.0.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/pax-web-spi-4.3.0.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/pax-web-runtime-4.3.0.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/pax-web-jetty-4.3.0.jar</bundle>
+    </feature>
+
+    <feature name="pax-http" version="4.3.0" description="Implementation of the OSGI HTTP Service">
+        <details>Allows to publish servlets using pax web and jetty</details>
+        <feature dependency="true" version="[4.3,4.4)">pax-http-jetty</feature>
+        <requirement>
+            pax.http.provider
+        </requirement>
+    </feature>
+
+    <feature name="pax-http-whiteboard" description="Provide HTTP Whiteboard pattern support" version="4.3.0">
+        <feature version="[4.3,4.4)">pax-http</feature>
+        <bundle dependency="true" start-level="30">file:lib/tplib/ecj-4.4.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/pax-web-jsp-4.3.0.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/pax-web-extender-whiteboard-4.3.0.jar</bundle>
+    </feature>
+
+    <feature name="pax-war" description="Provide support of a full WebContainer" version="4.3.0">
+        <config name="org.ops4j.pax.url.war">
+            org.ops4j.pax.url.war.importPaxLoggingPackages=true
+        </config>
+        <feature version="[4.3,4.4)">pax-http-whiteboard</feature>
+        <bundle start-level="30">file:lib/tplib/pax-web-jsp-4.3.0.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/pax-web-extender-war-4.3.0.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/pax-web-extender-whiteboard-4.3.0.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/pax-web-deployer-4.3.0.jar</bundle>
+        <bundle start-level="30">file:lib/tplib/pax-url-war-2.4.7-uber.jar</bundle>
+    </feature>
+
+</features>

@@ -1,0 +1,12 @@
+<data>
+	<resource-handler id="rh-1">
+		<context-path>/flink</context-path>
+		<location>${dist.dir}/flink-esb-2.0.0</location>
+		<allow-modification>true</allow-modification>
+                <modify-roles>admin</modify-roles>
+	</resource-handler>
+	<resource-handler id="rh-2">
+                <context-path>/log</context-path>
+                <location>${dist.dir}/flink-esb-2.0.0/data/log</location>
+        </resource-handler>
+</data>

@@ -1,0 +1,70 @@
+Quick Installation Guide on Windows PC
+
+Prerequisites:
+1) At least 2 GB RAM
+2) Java 8
+3) Access to Mysql DB [5.5-5.7]
+3) Optionally elasticsearch 2.2.1 installation
+
+1) Unzip flink-esb-2.0.0.distrib.zip somewhere on your PC
+2) Go to folder "flink-esb-2.0.0/data" and make sute it is empty. If not: delete everything from there
+3) Copy tibjms.jar (from Tibco EMS distribution) into folder "flink-esb-2.0.0/applications/tplib"
+
+
+Configuration before first start
+
+1) Login as root into mysql DB and create message gateway DB and user (use instructions in file "flink-esb-2.0.0/applications/message-gateway/db/create_db_and_user.sql")
+2) Login as application user (defined in the previous step) into DB, run command "use gateway" (where gateway is the name of database defined in the previous step). Run script "flink-esb-2.0.0/applications/message-gateway/db/mysql.sql"
+
+3) Edit file "esb.core.cfg" in "flink-esb-2.0.0/etc" folder. Here path to Flink-ESB licence file must be configured. Licence file is within distribution in "flink-esb-2.0.0/flink-esb.lic"
+4) Edit file "esb.distributed.cfg" in "flink-esb-2.0.0/etc" folder. Every parameter is described in the file. Those marked with '###' MUST BE adjusted
+5) Edit file "esb.console.cfg" in "flink-esb-2.0.0/etc" folder. It contains just one parameter: path to properties file used for authentication in Flink-ESB Admin Console. Example file is within distribution in "flink-esb-2.0.0/realm.properties"
+6) Edit file "esb.es.client.cfg" in "flink-esb-2.0.0/etc" folder. Every parameter is described in the file. Those marked with '###' MUST BE adjusted
+7) Edit file "esb.es.server.cfg" in "flink-esb-2.0.0/etc" folder. Every parameter is described in the file. Those marked with '###' MUST BE adjusted
+8) Edit file "org.ops4j.pax.web.cfg" in "flink-esb-2.0.0/etc" folder. Every parameter is described in the file. Those marked with '###' MUST BE adjusted
+9) Edit jetty configuration file referenced in "org.ops4j.pax.web.cfg" with parameter "org.ops4j.pax.web.config.file". Adjust path to properties file, used for authentication in Admin Console (default one is within distribution)
+10 Edit "org.apache.karaf.features.cfg" in "flink-esb-2.0.0/etc" folder. Only "featuresRepositories" parameter must be adjusted: set paths to "...features.xml" files as ${FLINK_INSTALL_HOME}/features
+
+11) Edit file "message.gateway.cfg" in "flink-esb-2.0.0/appconf" folder. Every parameter is described in the file. Those marked with '###' MUST BE adjusted
+12) Edit file "mg.console.cfg" in "flink-esb-2.0.0/appconf" folder. Every parameter is described in the file. Those marked with '###' MUST BE adjusted
+
+Running Message Gateway
+
+1) Go to "flink-esb-2.0.0/bin" folder and run "karaf.bat"
+2) After application loads all necessary bundles for the first time, type "bundle:list" in the shell console. You should see 2 bundles with status "Active":
+
+karaf@root()> bundle:list
+START LEVEL 100 , List Threshold: 50
+ ID | State  | Lvl | Version            | Name
+---------------------------------------------------------
+111 | Active |  80 | 1.0.0.201703281210 | message-gateway
+112 | Active |  80 | 1.0.0.201703281125 | mg-console
+karaf@root()>
+
+3) Type "esb:route:list -v" in the console and make sure all routes are in state "ACTIVE" and parameter "NFAILED" is "0" for every route
+
+4) Type "shutdown -f" to stop instance
+
+Accessing Message Gateway Config Console
+
+1) Type in the browser: http(s)://${http.host}:${http.port}/console/main, where
+http.host and http.port are set in file "flink-esb-2.0.0/appconf/mg.console.cfg"
+Whether it is "http" or "https" is defined by parameter "use.ssl" in the file "flink-esb-2.0.0/appconf/mg.console.cfg"
+3) Login with "admin/admin"
+
+How to change username/password for accessing Message Gateway Config Console:
+
+1) Check parameter "admin.role" in file "flink-esb-2.0.0/appconf/mg.console.cfg" (default is "admin") to see what role is allowed to access console (you can also modify it as you wish),
+check parameter "file.login.file" to find properties file with users. Check this file and pick one user having "admin" role or create new user(s).
+2) If you modified role or added/changes user/password/role - restart mg-console bundle:
+
+run "bundle:list" to see ID of "mg-console" bundle:
+
+bundle:list
+START LEVEL 100 , List Threshold: 50
+ ID | State  | Lvl | Version            | Name
+---------------------------------------------------------
+111 | Active |  80 | 1.0.0.201703281210 | message-gateway
+112 | Active |  80 | 1.0.0.201703281125 | mg-console
+
+run "restart 112" (take ID from your output) to restart bundle
