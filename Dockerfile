@@ -20,7 +20,7 @@ RUN chown -R 1001:1001 /opt/tools
 # Set the default user for the image, the user itself was created in the base image
 USER 1001
 
-RUN /opt/tools/apache-ant-1.9.13/bin/ant
+RUN cd /opt/distribution && /opt/tools/apache-ant-1.9.13/bin/ant
 
 EXPOSE 8443
 EXPOSE 4848
